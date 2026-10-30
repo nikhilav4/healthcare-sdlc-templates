@@ -1,0 +1,82 @@
+# RAID register starter in the format read by raid-log: https://github.com/nikhilav4/raid-log
+# Replace the bracketed text and the example dates, then check the file with:
+#   raid validate raid-log.yaml
+# Bracketed values are quoted because YAML reads a bare [text] as a list.
+# Keep patient identifiers out of this file. Refer to incidents by ticket or report number.
+
+project: "[Project name]"
+updated: 2026-11-02          # change this whenever you edit the register
+
+items:
+  # A risk has not happened yet. Exposure is probability x impact, 1 to 25.
+  - id: R-001                # R- risk, A- assumption, I- issue, D- dependency, then 3+ digits
+    type: risk
+    title: "[What might happen and what it would hit]"
+    description: >-
+      [Two or three sentences a steering member can read cold: what you have seen,
+      why it matters, and what it would cost if it happened.]
+    owner: "[One named person, not a team]"
+    status: open             # open | monitoring | mitigating | resolved | closed
+    raised: 2026-11-02
+    review_by: 2026-11-16    # every open, monitoring or mitigating item needs one
+    probability: 3           # 1 rare to 5 almost certain
+    impact: 4                # 1 negligible to 5 severe; 5 includes possible patient harm
+    mitigation: "[What you are doing now to make it less likely or less damaging]"
+    contingency: "[What you will do if it happens anyway, and who decides]"
+    workstream: "[Workstream]"
+    links: [D-001]
+    tags: [patient-safety]   # tag anything that could reach a patient
+    source: "[Meeting where it was raised, and the date]"
+    log:
+      - {date: 2026-11-02, note: "[What changed and why, one entry per update]"}
+
+  # An assumption is something the plan treats as true that nobody has confirmed.
+  - id: A-001
+    type: assumption
+    title: "[What the plan takes as true]"
+    description: "[How it will be confirmed, and by whom]"
+    owner: "[Named person]"
+    status: open
+    raised: 2026-11-02
+    review_by: 2026-11-20
+    validate_by: 2026-11-20  # still unconfirmed on this date? Raise a risk.
+    workstream: "[Workstream]"
+
+  # An issue is happening now.
+  - id: I-001
+    type: issue
+    title: "[What has gone wrong, in one line]"
+    owner: "[Named person]"
+    status: mitigating
+    severity: high           # low | medium | high | critical
+    raised: 2026-11-02
+    review_by: 2026-11-09
+    workstream: "[Workstream]"
+    log:
+      - {date: 2026-11-02, note: "[What has been done and what happens next]"}
+
+  # A dependency is something the project needs from a person or team outside it.
+  - id: D-001
+    type: dependency
+    title: "[What we need, and from whom]"
+    owner: "[Named person on our side who chases it]"
+    status: open
+    raised: 2026-11-02
+    review_by: 2026-11-16
+    counterparty: "[Team or vendor that has to deliver]"
+    need_by: 2026-12-01      # the date the plan breaks without it
+    workstream: "[Workstream]"
+    links: [R-001]
+
+  # Resolved and closed items stay in the register, with a resolution.
+  - id: R-002
+    type: risk
+    title: "[A risk that is over, kept here to show the closed shape]"
+    owner: "[Named person]"
+    status: closed
+    raised: 2026-10-19
+    probability: 2
+    impact: 3
+    resolution: "[What happened. If the risk turned into an issue, name the issue ID.]"
+    log:
+      - {date: 2026-10-30, note: "[Why it was closed]"}
