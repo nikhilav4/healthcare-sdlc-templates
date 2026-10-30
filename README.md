@@ -2,7 +2,7 @@
 
 Templates for running a healthcare IT software project through the SDLC, from charter to hypercare.
 
-Generic project templates treat a release as done when it ships. In a hospital or clinic it is done when clinicians can work safely with it, and that takes a privacy and security review before build, clinical sign-off in UAT, a defect scale that rates clinical risk apart from technical severity, and downtime procedures for the hours the system is unavailable. These templates put each of those checks in the phase where it belongs; they come out of running Agile delivery for a healthcare software platform, where release readiness and UAT with clinical reviewers decide whether a release goes out.
+Generic project templates treat a release as done when it ships. In a hospital or clinic it is done when clinicians can work safely with it, and that takes a privacy and security review before build, clinical sign-off in UAT, a defect scale that rates clinical risk apart from technical severity, and downtime procedures for the hours the system is unavailable. These templates put each of those checks in the phase where it belongs. I run Agile delivery for a healthcare software platform, where release readiness and UAT with clinical reviewers decide whether a release goes out, and the templates are written for that kind of work.
 
 ## The SDLC map
 
